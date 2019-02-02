@@ -1,0 +1,31 @@
+*qfloc.txt*			Vim plugin collection for quickfix/loclist
+
+Author:  Alisue <lambdalisue@hashnote.net>
+License: MIT license
+
+
+=============================================================================
+CONTENTS					*qfloc-contents*
+
+INTRODUCTION			|qfloc-introduction|
+USAGE				|qfloc-usage|
+
+
+=============================================================================
+INTRODUCTION					*qfloc-introduction*
+
+*qfloc.vim* (qfloc) is a plugin collection for |quickfix| and |location-list|.
+
+
+Reference:~
+https://thinca.hatenablog.com/entry/20130708/1373210009
+
+
+=============================================================================
+USAGE						*qfloc-usage*
+
+TBW
+
+
+=============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
