@@ -1,3 +1,4 @@
+let s:timer = v:null
 function! qfloc#document#enable() abort
   augroup qfloc_document_internal
     autocmd! *
@@ -8,6 +9,12 @@ function! qfloc#document#enable() abort
     autocmd BufWritePost * call s:update_delay(bufnr('%'))
     autocmd User QflocDocumentUpdated :
   augroup END
+  silent! call timer_stop(s:timer)
+  let s:timer = timer_start(
+        \ g:qfloc#document#update_interval,
+        \ { -> s:update(bufnr('%')) },
+        \ { 'repeat': -1 },
+        \)
   call s:update(bufnr('%'))
 endfunction
 
@@ -15,6 +22,8 @@ function! qfloc#document#disable() abort
   augroup qfloc_document_internal
     autocmd! *
   augroup END
+  silent! call timer_stop(s:timer)
+  let s:timer = v:null
 endfunction
 
 function! qfloc#document#update(...) abort
@@ -44,7 +53,7 @@ endfunction
 function! s:update_delay(bufnr) abort
   silent! call timer_stop(getbufvar(a:bufnr, 'qfloc_document_update_delay_timer'))
   call setbufvar(a:bufnr, 'qfloc_document_update_delay_timer', timer_start(
-        \ g:qfloc#document#update_delay_timer,
+        \ g:qfloc#document#update_delay,
         \ { -> s:update(a:bufnr) },
         \))
 endfunction
@@ -69,4 +78,5 @@ function! s:update_document(bufnr, list) abort
   doautocmd User QflocDocumentUpdated
 endfunction
 
-let g:qfloc#document#update_delay_timer = 50
+let g:qfloc#document#update_delay = 50
+let g:qfloc#document#update_interval = 500
