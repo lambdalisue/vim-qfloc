@@ -25,5 +25,5 @@ if !get(g:, 'qfloc_disable_default_mappings')
   nmap <buffer> p <Plug>(qfloc-preview)
   nmap <buffer> u <Plug>(qfloc-undo)
   nmap <buffer> dd <Plug>(qfloc-delete)
-  vmap <buffer> dd <Plug>(qfloc-delete)
+  vmap <buffer> d  <Plug>(qfloc-delete)
 endif
