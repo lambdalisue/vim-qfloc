@@ -19,7 +19,7 @@ function! qfloc#document#hover#echo(...) abort
   endif
   let item = get(get(doc.map, line('.') . '', []), 0)
   if empty(item)
-    redraw | echo ""
+    redraw | echo ''
   elseif item.type ==# 'E'
     redraw | call qfloc#message#error(item.text)
   elseif item.type ==# 'W'
