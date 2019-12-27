@@ -21,7 +21,7 @@ function! s:norm(v, n) abort
   if g:qfloc#motion#wrap
     return ((a:v % a:n) + a:n) % a:n
   else
-    return a:v < 0 ? 0 : a:v > a:n : a:n : a:v
+    return a:v < 0 ? 0 : a:v > a:n ? a:n : a:v
   endif
 endfunction
 
