@@ -14,7 +14,7 @@ function! s:move(list, motion) abort
   while c != n && a:list[n].bufnr is# 0
     let n = s:norm(n, o, m)
   endwhile
-  return (n + 1) . 'G'
+  return (v:count ==# 0 ? '' : "\<Esc>") . (n + 1) . 'G'
 endfunction
 
 function! s:norm(n, o, m) abort
