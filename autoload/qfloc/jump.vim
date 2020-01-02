@@ -33,30 +33,4 @@ function! s:jump(init_expr, jump_expr, wrap_expr) abort
   endtry
 endfunction
 
-function! qfloc#jump#lsbuffer() abort
-  call s:sbuffer(1)
-endfunction
-
-function! qfloc#jump#csbuffer() abort
-  call s:sbuffer(0)
-endfunction
-
-function! s:sbuffer(is_loclist) abort
-  if a:is_loclist
-    let list = getloclist(winnr())
-  else
-    let list = getqflist()
-  endif
-  let item = get(list, line('.') - 1, {})
-  let bufnr = get(item, 'bufnr', -1)
-  if bufnr ==# -1
-    call qfloc#message#error('could not get buffer number')
-    return
-  endif
-  execute bufnr 'sbuffer'
-  " Go to the lnum and col
-  wincmd p
-  execute "normal! \<CR>"
-endfunction
-
 let g:qfloc#jump#wrap = get(g:, 'qfloc#jump#wrap', 1)

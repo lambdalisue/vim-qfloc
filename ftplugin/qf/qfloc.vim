@@ -7,14 +7,14 @@ let s:is_loclist = getwininfo(win_getid())[0].loclist
 if s:is_loclist
   nnoremap <silent><buffer><expr> <Plug>(qfloc-j) qfloc#motion#lmove(v:count1)
   nnoremap <silent><buffer><expr> <Plug>(qfloc-k) qfloc#motion#lmove(-v:count1)
-  nnoremap <silent><buffer> <Plug>(qfloc-sbuffer) :<C-u>call qfloc#jump#lsbuffer()<CR>
+  nnoremap <silent><buffer> <Plug>(qfloc-sbuffer) :<C-u>call qfloc#window#lsbuffer()<CR>
   nnoremap <silent><buffer> <Plug>(qfloc-undo) :<C-u>call qfloc#edit#lundo()<CR>
   nnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#ldelete()<CR>
   vnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#ldelete()<CR>
 else
   nnoremap <silent><buffer><expr> <Plug>(qfloc-j) qfloc#motion#cmove(v:count1)
   nnoremap <silent><buffer><expr> <Plug>(qfloc-k) qfloc#motion#cmove(-v:count1)
-  nnoremap <silent><buffer> <Plug>(qfloc-sbuffer) :<C-u>call qfloc#jump#csbuffer()<CR>
+  nnoremap <silent><buffer> <Plug>(qfloc-sbuffer) :<C-u>call qfloc#window#csbuffer()<CR>
   nnoremap <silent><buffer> <Plug>(qfloc-undo) :<C-u>call qfloc#edit#cundo()<CR>
   nnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#cdelete()<CR>
   vnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#cdelete()<CR>
