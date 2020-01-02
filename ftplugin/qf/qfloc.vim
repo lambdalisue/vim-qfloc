@@ -9,13 +9,13 @@ if s:is_loclist
   nnoremap <silent><buffer><expr> <Plug>(qfloc-k) qfloc#motion#lmove(-v:count1)
   nnoremap <silent><buffer> <Plug>(qfloc-undo) :<C-u>call qfloc#edit#lundo()<CR>
   nnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#ldelete()<CR>
-  vnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#ldelete()<CR>
+  xnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#ldelete()<CR>
 else
   nnoremap <silent><buffer><expr> <Plug>(qfloc-j) qfloc#motion#cmove(v:count1)
   nnoremap <silent><buffer><expr> <Plug>(qfloc-k) qfloc#motion#cmove(-v:count1)
   nnoremap <silent><buffer> <Plug>(qfloc-undo) :<C-u>call qfloc#edit#cundo()<CR>
   nnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#cdelete()<CR>
-  vnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#cdelete()<CR>
+  xnoremap <silent><buffer> <Plug>(qfloc-delete) :call qfloc#edit#cdelete()<CR>
 endif
 nnoremap <silent><buffer> <Plug>(qfloc-preview) <CR>zz<C-w>p
 
@@ -25,5 +25,5 @@ if !get(g:, 'qfloc_disable_default_mappings')
   nmap <buffer> p <Plug>(qfloc-preview)
   nmap <buffer> u <Plug>(qfloc-undo)
   nmap <buffer> dd <Plug>(qfloc-delete)
-  vmap <buffer> d  <Plug>(qfloc-delete)
+  xmap <buffer> d  <Plug>(qfloc-delete)
 endif
