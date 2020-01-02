@@ -9,19 +9,20 @@ endfunction
 function! s:move(list, motion) abort
   let m = line('$')
   let c = line('.') - 1
-  let n = s:norm(c + a:motion, m)
+  let n = s:norm(c, a:motion, m)
   let o = 0 < a:motion ? 1 : -1
   while c != n && a:list[n].bufnr is# 0
-    let n = s:norm(n + o, m)
+    let n = s:norm(n, o, m)
   endwhile
-  return (n + 1) . 'G'
+  return (v:count ==# 0 ? '' : "\<Esc>") . (n + 1) . 'G'
 endfunction
 
-function! s:norm(v, n) abort
+function! s:norm(n, o, m) abort
+  let v = a:n + a:o
   if g:qfloc#motion#wrap
-    return ((a:v % a:n) + a:n) % a:n
+    return ((v % a:m) + a:m) % a:m
   else
-    return a:v < 0 ? 0 : a:v > a:n : a:n : a:v
+    return v < 0 ? 0 : v >= a:m ? a:n : v
   endif
 endfunction
 
