@@ -47,7 +47,7 @@ function! s:update(bufnr) abort
   let list = []
   call extend(list, filter(getqflist(), { -> v:val.bufnr is# a:bufnr }))
   call extend(list, filter(getloclist(bufwinnr(a:bufnr)), { -> v:val.bufnr is# a:bufnr }))
-  call s:update_document(a:bufnr, list)
+  call s:update_document(a:bufnr, list[: g:qfloc#document#threshold])
 endfunction
 
 function! s:update_delay(bufnr) abort
@@ -80,3 +80,4 @@ endfunction
 
 let g:qfloc#document#update_delay = 50
 let g:qfloc#document#update_interval = 500
+let g:qfloc#document#threshold = 100
